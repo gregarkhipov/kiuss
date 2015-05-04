@@ -1,0 +1,114 @@
+@media only screen
+and (max-device-width:850px),
+(max-width:850px) {
+
+html {
+  -webkit-text-size-adjust: none;
+}
+
+body {
+  min-width: 550px;
+}
+
+.artcontent .space {
+  display: none;
+}
+
+.artcontent .aside {
+  position: relative;
+  width: 100%;
+  height: auto;
+  padding-bottom: 20px;
+}
+
+.artcontent .aside .sw {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+}
+
+.artcontent .aside .sw .line {
+  display: block;
+  width: 20px;
+  height: 2px;
+  margin-bottom: 4px;
+  -webkit-transition: background .1s ease-in;
+  -moz-transition: background .1s ease-in;
+  -o-transition: background .1s ease-in;
+  transition: background .1s ease-in; 
+}
+
+.artcontent .aside .sw .line::last-child {
+  margin: 0px;
+}
+
+.artcontent .aside.collapsed .sw .line {
+  background: #aaa;
+}
+
+.artcontent .aside .sw .line,
+.artcontent .aside.collapsed .sw:hover .line {
+  background: #000;
+}
+
+.artcontent .aside.collapsed nav {
+  margin: 0px;
+}
+
+.artcontent .aside.collapsed .back {
+  margin: 0px;
+  margin-top: 10px;
+}
+
+.artcontent .aside.collapsed .artists,
+.artcontent .aside.collapsed .projects,
+.artcontent .aside.collapsed .artist,
+.artcontent .aside.collapsed .project {
+  display: none;
+}
+
+.artcontent .aside .shadow-top,
+.artcontent .aside .shadow-bottom {
+  display: none;
+}
+
+.artcontent .aside .projects {
+  max-height: none;
+  margin: 0px auto;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.artcontent .aside .projects a {
+  margin: 5px auto;
+}
+
+.artcontent .aside .projects a img {
+  display: none;
+}
+
+.artcontent .aside .project img,
+.artcontent .aside .artist img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+}
+
+.artcontent .aside .projects a span {
+  margin: 0px;
+}
+
+.artcontent .aside .project h2,
+.artcontent .aside .artist h2 {
+  margin-top: 10px;
+}
+
+.artcontent .aside a.back {
+  margin-bottom: 15px;
+}
+
+}

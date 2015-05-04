@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}404 Not Found &mdash; {{ block.super }}{% endblock %}
+{% block description %}Page not found.{% endblock %}
+{% block header %}
+    <header>
+      <nav>
+        <a href="/">Main</a>
+        {% if artwork_page > 1 %}
+        <a href="/artworks/page/{{ artwork_page }}/">Artworks</a>
+        {% else %}
+        <a href="/artworks/">Artworks</a>
+        {% endif %}
+        <a href="/about/">About</a>
+      </nav>
+    </header>
+{% endblock %}
+{% block content %}
+    <section class="content">
+      <h3 class="notfound">Page cannot be&nbsp;found</h3>
+    </section>
+{% endblock %}

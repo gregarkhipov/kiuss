@@ -1,0 +1,743 @@
+header, header *,
+a, a * {
+  -webkit-transition: color .1s ease-in, background .1s ease-in;
+  -moz-transition: color .1s ease-in, background .1s ease-in;
+  -o-transition: color .1s ease-in, background .1s ease-in;
+  transition: color .1s ease-in, background .1s ease-in;
+}
+
+*::-moz-selection {
+  background-color: rgba(0, 0, 0, .7);
+  color: #fff;
+  text-shadow: 0px 1px 1px #000;
+}
+
+*::selection {
+  background-color: rgba(0, 0, 0, .7);
+  color: #fff;
+  text-shadow: 0px 1px 1px #000;
+}
+
+a::-moz-selection {
+  color: #6ff;
+}
+
+a::selection {
+  color: #6ff;
+}
+
+a:hover::-moz-selection {
+  color: #f00;
+}
+
+a:hover::selection {
+  color: #f00;
+}
+
+a, a:link, a:visited {
+  text-decoration: none;
+  color: #000;
+}
+
+a:hover {
+  color: #800;
+}
+
+html {
+  font-family: "Gotham Pro", "Lucida Grande", "Trebuchet", "Arial", sans-serif;
+  font-size: 14pt;
+  color: #000;
+}
+
+body {
+  margin: auto;
+  padding: 8px auto;
+  width: auto;
+  min-width: 850px;
+  max-width: none;
+  background: #fff;
+}
+
+.content,
+.artcontent {
+  text-align: center;
+}
+
+.content {
+  margin: 15px auto;
+  padding: 0px 15px;
+  min-height: 300px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.artcontent {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+.artcontent .space {
+  display: table-cell;
+  position: relative;
+  width: 300px;
+  height: 100%;
+  float: left;
+}
+
+header {
+  position: relative;
+  z-index: 500;
+  top: 0px;
+  left: 0px;
+  padding: 12px 0px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, .1);
+}
+
+header nav {
+  text-align: center;
+}
+
+.artcontent .aside {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, .25);
+  z-index: 100;
+  text-align: center;
+  padding-top: 25px;
+}
+
+.artcontent .aside img {
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, .75);
+}
+
+.artcontent .aside nav {
+  margin-bottom: 25px;
+}
+
+.artcontent .aside nav a,
+.artcontent .aside a.back,
+header nav a,
+header a.back {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 0px;
+  margin: 0px 10px;
+}
+
+.artcontent .aside a.back,
+header nav a.back {
+  display: block;
+  color: #888;
+}
+
+.artcontent .aside a.back {
+  margin-bottom: 25px;
+}
+
+header nav a.back {
+  position: absolute;
+  left: 20px;
+  top: 14px;
+}
+
+.artcontent .aside a.back:hover,
+header nav a.back:hover {
+  color: #800;
+}
+
+.artcontent .aside a.back::before,
+header nav a.back::before {
+  position: relative;
+  content: "<";
+  margin-right: 5px;
+}
+
+.artcontent .aside .artists a {
+  display: inline-block;
+  margin: 0px 4px;
+  padding: 0px;
+}
+
+.artcontent .aside .artists img {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+}
+
+.artcontent .aside .shadow-top {
+  position: absolute;
+}
+
+.artcontent .aside .shadow-top div {
+  position: relative;
+  top: 20px;
+  left: 20px;
+  width: 260px;
+  height: 15px;
+  box-shadow: inset 0px 15px 5px -10px #fff;
+}
+
+.artcontent .aside .shadow-bottom {
+  position: absolute;
+}
+
+.artcontent .aside .shadow-bottom div {
+  position: relative;
+  bottom: 15px;
+  left: 20px;
+  width: 260px;
+  height: 15px;
+  box-shadow: inset 0px -15px 5px -10px #fff;
+}
+
+.artcontent .aside .projects {
+  margin-top: 20px;
+  overflow-y: scroll;
+  height: auto;
+  min-height: 50px;
+  max-height: 190px;
+  max-height: calc(100% - 125px);
+  text-align: left;
+  -webkit-transition: overflow .5s ease-in;
+}
+
+/*
+.artcontent .aside .projects {
+  overflow-y: hidden;
+}
+
+.artcontent .aside:hover .projects {
+  overflow-y: scroll;
+}
+*/
+
+.artcontent .aside .projects a {
+  display: block;
+  margin: 10px 30px;
+}
+
+.artcontent .aside .projects a img {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  vertical-align: middle;
+}
+
+.artcontent .aside .projects a span {
+  display: inline-block;
+  width: 160px;
+  margin-left: 15px;
+  font-size: 15px;
+  line-height: 15px;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.artcontent .aside .project img,
+.artcontent .aside .artist img {
+  width: 150px;
+  height: 150px;
+  border-radius: 150px;
+}
+
+.artcontent .aside .project h2,
+.artcontent .aside .artist h2 {
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 16px;
+  padding: 0px 20px;
+}
+
+.artcontent .aside .project p,
+.artcontent .aside .artist p {
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 5px;
+  padding: 0px 20px;
+}
+
+.artcontent .aside .project a,
+.artcontent .aside .artist a {
+  font-size: 14px;
+  line-height: 14px;
+  padding: 0px 20px;
+  color: #008;
+}
+
+.artcontent .aside .project a:hover,
+.artcontent .aside .artist a:hover {
+  color: #800;
+}
+
+.artcontent .aside .sw {
+  display: none;
+}
+
+.artcontent .artlist {
+  display: table-cell;
+  margin: 0px auto;
+  width: 100%;
+  min-width: 550px;
+  max-width: 1200px;
+  padding: 20px 0px;
+  text-align: center;
+}
+
+.artcontent .artlist article {
+  display: inline-block;
+  position: static;
+  width: 150px;
+  height: 150px;
+  margin: 15px 13px;
+  padding: 0px;
+}
+
+.artcontent .artlist article div.layer1,
+.artcontent .artlist article div.layer2,
+.artcontent .artlist article div.layer3 {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+}
+
+.artcontent .artlist article * {
+  -webkit-transition: all .15s ease-in;
+  -moz-transition: all .15s ease-in;
+  -o-transition: all .15s ease-in;
+  transition: all .15s ease-in;
+}
+
+.artcontent .artlist article div.layer1 {
+  z-index: 70;
+  width: 140px;
+  height: 140px;
+}
+
+.artcontent .artlist article div.layer1 img {
+  position: relative;
+  top: 5px;
+  left: 5px;
+  width: 140px;
+  height: 140px;
+  border: none;
+}
+
+.artcontent .artlist article div.layer2 {
+  z-index: 60;
+  overflow: hidden;
+}
+
+.artcontent .artlist article:hover div.layer2 {
+  height: 170px;
+}
+
+.artcontent .artlist article div.layer2 a {
+  position: relative;
+  top: 150px;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.artcontent .artlist article div.layer3 {
+  z-index: 50;
+}
+
+.artcontent .artlist article div.layer3 div {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, .5);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, .2), 0px 1px 7px rgba(0, 0, 0, .1);
+}
+
+.artcontent .artlist article:hover div.layer3 {
+  margin: -5px;
+}
+
+.artcontent .artlist article:hover div.layer3 div {
+  width: 160px;
+  height: 180px;
+}
+
+.artcontent .artlist article div.layer2 a:hover {
+  color: #800;
+}
+
+.artcontent .paginator {
+  margin-top: 15px;
+}
+
+.artcontent .paginator span,
+.artcontent .paginator a {
+  font-size: 20px;
+  margin: 0px 7px;
+}
+
+.artcontent .paginator span {
+  color: rgba(0, 0, 0, .6);
+}
+
+.artcontent .paginator a {
+  color: rgba(0, 0, 0, .3);
+}
+
+.artcontent .paginator a:hover {
+  color: #800;
+}
+
+#ascrail2000 {
+  position: fixed !important;
+}
+
+.artcontent article.detail {
+  margin: 30px auto;
+}
+
+.notfound {
+  position: absolute;
+  min-width: 850px;
+  height: 40px;
+  top: 50%;
+  margin-top: -30px;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 30px;
+}
+
+
+
+/* ------------------------------------------ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.categories,
+.authors,
+.artworks {
+  margin-top: 0px;
+}
+
+.categories span {
+  font-size: 11pt;
+  display: inline-block;
+  text-transform: lowercase;
+}
+
+.authors a {
+  font-size: 11pt;
+  display: inline-block;
+  color: #008;
+}
+
+.authors a:hover {
+  color: #800;
+}
+
+.authors span {
+  display: inline-block;
+  font-size: 11pt;
+  font-weight: normal;
+}
+
+
+
+
+
+
+
+.artcontent article.detail .photos {
+  display: none;
+  text-align: center;
+  width: auto;
+}
+
+.artcontent article.detail img {
+  display: block;
+  max-width: 700px;
+  max-height: 600px;
+  width: auto;
+  height: auto;
+  margin: 0px auto;
+  border: none;
+  padding: 5px;
+  background: rgba(255, 255, 255, .5);
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, .2), 0px 1px 7px rgba(0, 0, 0, .1);
+}
+
+.artcontent article .mapheader {
+  display: none;
+  font-weight: normal;
+  font-size: 10pt;
+  margin: 10px auto;
+  color: rgba(0, 0, 0, .4);
+  cursor: pointer; cursor: hand;
+}
+
+.artcontent article .mapheader:hover,
+.artcontent article .mapheader.clicked {
+  color: #800;
+}
+
+.artcontent article .mapheader.visible {
+  display: inline-block;
+}
+
+.artcontent article .map {
+  width: 600px;
+  height: 400px;
+  display: block;
+  margin: 10px auto;
+  margin-top: 0px;
+  background: rgba(0, 0, 0, .1);
+  overflow: hidden;
+  color: rgba(0, 0, 0, .4);
+  font-size: 12pt;
+}
+
+.artcontent article .map p {
+  margin-top: 20px;
+}
+
+.artcontent article .map.minimized {
+  display: none;
+}
+
+.artcontent article .map, .artcontent article .map * {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+
+.artcontent article.map .map {
+  width: 700px;
+  height: 500px;
+}
+
+.artcontent article.map h3 {
+  display: block;
+  font-size: 14pt;
+  margin-bottom: 10px;
+  font-weight: normal;
+  color: rgba(0, 0, 0, .6);
+}
+
+.artcontent article.detail .description {
+  max-width: 600px;
+  margin: 10px auto;
+  margin-bottom: 0px;
+}
+
+.artcontent article .title {
+  display: block;
+  font-size: 18pt;
+}
+
+.artcontent article time {
+  display: block;
+  font-size: 14pt;
+  font-style: italic;
+}
+
+.artcontent article p {
+  font-size: 12pt;
+}
+
+.navigation {
+  display: inline-block;
+  text-align: center;
+  margin: 3px auto;
+}
+
+.navigation a,
+.navigation span {
+  font-size: 15px;
+  padding: 2px 8px;
+  margin: 0px 3px;
+  color: #fff;
+  background: #5266a3;
+  border-radius: 2px;
+}
+.navigation a {
+  box-shadow: inset 0px -1px 0px rgba(0, 0, 0, .3);
+}
+
+.navigation a:hover {
+  background: #6179c2;
+}
+
+.navigation a:active {
+  background: #415182;
+}
+
+.navigation span {
+  color: rgba(0, 0, 0, .4);
+  background: rgba(0, 0, 0, .01);
+}
+
+
+
+
+
+
+
+
+
+
+
+.artcontent .projectdetail, 
+.artcontent .alldetail {
+  margin: 0px auto;
+  margin-top: 5px;
+  padding: 0px;
+  width: 600px;
+}
+
+.artcontent .projectdetail h3, 
+.artcontent .alldetail h3 {
+  font-size: 18pt;
+  line-height: 18pt;
+  margin: 0px auto;
+}
+
+.artcontent .projectdetail p {
+  font-size: 13pt;
+  line-height: 15pt;
+  margin-top: 5px;
+}
+
+.artcontent .projectdetail .authors,
+.artcontent .alldetail .authors {
+  display: block;
+  margin-top: 10px;
+}
+
+.artcontent .projectdetail .authors img,
+.artcontent .alldetail .authors img {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  font-size: 10px;
+  margin: 0px 2px;
+}
+
+.artcontent .projectsdetail {
+  margin: 10px auto;
+  padding: 0px;
+  width: 600px;
+}
+
+.artcontent .projectsdetail .authors img {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  margin: 0px 5px;
+}
+
+.artcontent h3.author {
+  display: block;
+  margin-top: 5px;
+  font-size: 13pt;
+  line-height: 13pt;
+  color: rgba(0, 0, 0, .6);
+  font-weight: normal;
+}
+
+.artcontent .projectlist,
+.artcontent .projectlist * {
+  -webkit-transition: opacity .2s ease-in, color .1s ease-in;
+  -moz-transition: opacity .2s ease-in, color .1s ease-in;
+  -o-transition: opacity .2s ease-in, color .1s ease-in;
+  transition: opacity .2s ease-in, color .1s ease-in;
+}
+
+.artcontent .projectlist,
+.artcontent .projectlist .layer1,
+.artcontent .projectlist .layer2 {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+}
+
+.artcontent .projectlist {
+  position: relative;
+  margin: 10px;
+  padding: 0px;
+}
+
+.artcontent .projectlist .layer1 {
+  position: absolute;
+  z-index: 160;
+  font-size: 16pt;
+  line-height: 200px;
+  width: 180px;
+  padding: 0px 10px;
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.artcontent .projectlist .layer1 span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;  
+  color: #000;
+  opacity: 0;
+}
+
+.artcontent .projectlist:hover .layer1 span {
+  opacity: 1;
+}
+
+.artcontent .projectlist .layer2 {
+  position: relative;
+  z-index: 150;
+}
+
+.artcontent .projectlist .layer2 img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  opacity: 1;
+}
+
+.artcontent .projectlist:hover .layer2 img {
+  opacity: .2;
+  /*
+  filter: url(../images/filters.svg#blur);
+  -webkit-filter: blur(3px);
+  */
+}

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% load static thumbnail %}
+
+{% block title %}Artworks of {{ artist.name }} &mdash; {{ block.super }}{% endblock %}
+{% block keywords %}{{ block.super }}, artworks{% endblock %}
+{% block description %}Artworks on Kiuss site.{% endblock %}
+{% block head-extras %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/main-mq.css" %}">
+    <script src="{% static "js/main-mq.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "css/jquery.fancybox.css" %}" />
+    <script src="{% static "js/jquery.fancybox.js" %}"></script>
+    <script src="{% static "js/jquery.mousewheel-3.0.6.pack.js" %}"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.fancybox').fancybox({
+        openEffect  : 'none',
+          closeEffect : 'none',
+          title : false,
+        });
+      });
+    </script>
+    <style>
+      .background {
+        display: block;
+        position: fixed;
+        top: 0px;
+        left: 0;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
+        opacity: .1;
+        filter: url({% static "images/filters.svg" %}#blur);
+        -webkit-filter: blur(3px);
+        background: url({{ artist.avatar|thumbnail_url:'400px' }}) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    </style>
+{% endblock %}
+{% block content %}{% spaceless %}
+    <div class="background"></div>
+    <section class="artcontent">
+      <div class="space">&nbsp;</div>
+      <div class="aside" id="aside">
+        <nav>
+          <a href="/">Main</a>
+          <a href="/about/">About</a>
+        </nav>
+        <a href="/artworks/" class="back">Artworks</a>
+        <article class="project">
+          <img src="{{ artist.avatar|thumbnail_url:'300px' }}" />
+          <h2>{{ artist.first_name }} {{ artist.last_name }}</h2>
+          {% if artist.bio %}
+            <p>
+            {% autoescape off %}{{ artist.bio }}{% endautoescape %}
+            </p>
+          {% endif %}
+          {% if artist.site %}
+            <a href="{{ artist.site }}">{{ artist.site_name }}</a>
+          {% endif %}
+        </article>
+      </div>
+      <section class="artlist">
+        {% for artwork in artworks %}
+        <article itemscope itemtype="http://schema.org/Painting" class="list">
+          <div class="layer1">
+            <a href="/artworks/author/{{ artist.user.username }}/{{ artwork.id }}/">            
+              <img itemprop="image" src="{{ artwork.image|thumbnail_url:'300px' }}" alt="{{ artwork.title }}" />
+            </a>
+          </div>
+          <div class="layer2">
+            <a href="{{ artwork.image.url }}" class="fancybox" title="Open image" data-fancybox-group="gallery" target="_blank">{{ artwork.title }}</a>
+          </div>
+          <div class="layer3">
+            <div></div>
+          </div>
+        </article>
+        {% endfor %}
+        {% if artworks.has_previous or artworks.has_next %}
+        <div class="paginator">
+          {% for page in artworks.paginator.page_range %}
+          {% ifequal page artworks.number %}
+            <span>{{ page }}</span>
+          {% else %}
+            <a href="/artworks/author/{{ artist.user.username }}/page/{{ page }}/">{{ page }}</a>
+          {% endifequal %}
+          {% endfor %}
+        </div>
+        {% endif %}
+      </section>
+      
+      
+      
+    </section>
+{% endspaceless %}{% endblock %}

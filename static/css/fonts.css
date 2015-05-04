@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Gotham Pro';
+  font-weight: normal;
+  font-weight: 400;
+  font-style: normal;
+  src:
+    local('Gotham Pro'),
+    local('Gotham Pro Regular'),
+    local('GothamProReg'),
+    url('../fonts/gotham-pro/GothamPro.otf') format('opentype'),
+    url('../fonts/gotham-pro/GothamPro.ttf') format('truetype'),
+    url('../fonts/gotham-pro/GothamPro.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/gotham-pro/GothamPro.woff') format('woff'),
+    url('../fonts/gotham-pro/GothamPro.svg#gotham_proregular') format('svg');
+}
+
+@font-face {
+  font-family: 'Gotham Pro';
+  font-weight: normal;
+  font-weight: 400;
+  font-style: italic;
+  src:
+    local('Gotham Pro Italic'),
+    local('GothamProIta'),
+    url('../fonts/gotham-pro/GothamProIt.otf') format('opentype'),
+    url('../fonts/gotham-pro/GothamProIt.ttf') format('truetype'),
+    url('../fonts/gotham-pro/GothamProIt.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/gotham-pro/GothamProIt.woff') format('woff'),
+    url('../fonts/gotham-pro/GothamProIt.svg#gotham_proitalic') format('svg');
+}
+
+@font-face {
+  font-family: 'Gotham Pro';
+  font-weight: medium;
+  font-weight: 500;
+  font-style: normal;
+  src:
+    local('Gotham Pro Medium'),
+    local('GothamProMed'),
+    url('../fonts/gotham-pro/GothamProMed.otf') format('opentype'),
+    url('../fonts/gotham-pro/GothamProMed.ttf') format('truetype'),
+    url('../fonts/gotham-pro/GothamProMed.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/gotham-pro/GothamProMed.woff') format('woff'),
+    url('../fonts/gotham-pro/GothamProMed.svg#gotham_promedium') format('svg');
+}

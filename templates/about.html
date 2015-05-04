@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static thumbnail %}
+
+{% block title %}About {{ block.super }}{% endblock %}
+{% block keywords %}{{ block.super }}, recent, news, about, manifesto{% endblock %}
+{% block description %}About Kiuss.{% endblock %}
+{% block head-items %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/reset.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/about.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/about-mq.css" %}">
+{% endblock %}
+{% block header %}
+    <header>
+      <nav>
+        <a href="/">Main</a>
+        <a href="/artworks/">Artworks</a>
+      </nav>
+    </header>
+{% endblock %}
+{% block content %}
+    <section class="content">
+      <article class="manifesto">
+        <div><img src="{% static "images/manifesto.png" %}" alt="Kiuss manifesto" /></div>
+      </article>
+      <article class="social"><a href="mailto:collective@kiuss.pl" class="mail" title="send email"><img src="{% static "images/icons/mail.png" %}" alt="mail" /></a><a href="http://twitter.com/kiusscollective/" class="twitter" title="follow on Twitter" target="_blank"><img src="{% static "images/icons/twitter.png" %}" alt="twitter" /></a><a href="http://www.facebook.com/kiusscollective" class="facebook" title="like on Facebook" target="_blank"><img src="{% static "images/icons/facebook.png" %}" alt="facebook" /></a><a href="http://vk.com/kiuss" class="vk" title="follow on VK" target="_blank"><img src="{% static "images/icons/vk.png" %}" alt="vk" /></a><a href="http://vimeo.com/kiuss" class="vimeo" title="watch on Vimeo" target="_blank"><img src="{% static "images/icons/vimeo.png" %}" alt="vimeo" /></a></article>
+    </section>
+{% endblock %}

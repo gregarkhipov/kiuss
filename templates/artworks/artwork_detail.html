@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% load thumbnail static %}
+
+{% block title %}{{ artwork.title }} &mdash; Artworks &mdash; {{ block.super }}{% endblock %}
+{% block keywords %}{{ block.super }}, artworks, {{ artwork.title }}{% endblock %}
+{% block description %}{{ artwork.title }} on Kiuss site.{% endblock %}
+{% block head-extras %}
+    <script src="{% static "js/navigation.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "css/jquery.fancybox.css" %}" />
+    <script src="{% static "js/jquery.fancybox.js" %}"></script>
+    <script src="{% static "js/jquery.mousewheel-3.0.6.pack.js" %}"></script>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+  			$('.fancybox').fancybox({
+  				openEffect  : 'none',
+  				closeEffect	: 'none',
+          title : false,
+        });
+        $("#mapheader").click(function(e){
+          e.preventDefault();
+          $("#mapheader").toggleClass("clicked");
+          $("#map").toggleClass("minimized");
+        });
+  		});
+  	</script>
+    {% if artwork.latitude and artwork.longitude %}
+    <script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&amp;lang=en-US" type="text/javascript"></script>
+    <script type="text/javascript">
+      ymaps.ready(init);
+        var artworkMap, artworkPlacemark;
+        function init(){     
+          artworkMap = new ymaps.Map ("map", {
+            center: [{{ artwork.latitude }}, {{ artwork.longitude }}],
+            zoom: 15, 
+            behaviors: ['multiTouch', 'drag']
+          });
+          artworkMap.setType('yandex#hybrid');
+          artworkPlacemark = new ymaps.Placemark([{{ artwork.latitude }}, {{ artwork.longitude }}], { 
+            iconContent: '{{ artwork.title }}'
+          }, {
+            preset: 'twirl#violetStretchyIcon'
+          });
+          artworkMap.geoObjects.add(artworkPlacemark);
+          artworkMap.controls.add(new ymaps.control.ZoomControl());
+          artworkMap.controls.add('typeSelector');
+          artworkMap.controls.add('scaleLine');
+        }
+    </script>
+    {% endif %}
+    <style>
+      .background {
+        display: block;
+        position: fixed;
+        top: 0px;
+        left: 0;
+        margin: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: -10;
+        opacity: .1;
+        filter: url({% static "images/filters.svg" %}#blur);
+        -webkit-filter: blur(3px);
+        background: url({{ artwork.image|thumbnail_url:'400px' }}) no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    </style>
+{% endblock %}
+{% block header %}
+    <header>
+      <nav>
+        <a href="/">Main</a>
+        {% if artwork_page > 1 %}
+        <a href="/artworks/page/{{ artwork_page }}/">Artworks</a>
+        {% else %}
+        <a href="/artworks/">Artworks</a>
+        {% endif %}
+        <a href="/about/">About</a>
+      </nav>
+    </header>
+{% endblock %}
+{% block content %}{% spaceless %}
+    <div class="background"></div>
+    <section class="artcontent">
+      <article itemscope itemtype="http://schema.org/Painting" class="detail">
+        <a itemprop="image" class="img fancybox" data-fancybox-group="gallery" title="{{ artwork.title }}" href="{{ artwork.image.url }}" target="_blank">
+          <img src="{{ artwork.image|thumbnail_url:'1400pxw' }}" alt="{{ artwork.title }}" />
+        </a>
+        <div class="photos">
+          {% if artwork.image_2 %}
+          <a itemprop="image" class="img fancybox" data-fancybox-group="gallery" title="{{ artwork.title }}" href="{{ artwork.image_2.url }}" target="_blank">
+            <img src="{{ artwork.image_2|thumbnail_url:'400pxw' }}" alt="{{ artwork.title }} 2" class="small" />
+          </a>
+          {% endif %}
+          {% if artwork.image_3 %}
+          <a itemprop="image" class="img fancybox" data-fancybox-group="gallery" title="{{ artwork.title }}" href="{{ artwork.image_3.url }}" target="_blank">
+            <img src="{{ artwork.image_3|thumbnail_url:'400pxw' }}" alt="{{ artwork.title }} 3" class="small" />
+          </a>
+          {% endif %}
+          {% if artwork.image_4 %}
+          <a itemprop="image" class="img fancybox" data-fancybox-group="gallery" title="{{ artwork.title }}" href="{{ artwork.image_4.url }}" target="_blank">
+            <img src="{{ artwork.image_4|thumbnail_url:'400pxw' }}" alt="{{ artwork.title }} 4" class="small" />
+          </a>
+          {% endif %}
+        </div>
+        <div class="description">
+          <h4 itemprop="name" class="title">{{ artwork.title }}</h4>
+          <time itemprop="dateCreated" datetime="{{ artwork.time|date:"Y-m-d" }}">
+            {{ artwork.time|date:"M. d, Y" }}
+          </time>
+          {% if artwork.text %}
+          <p itemprop="description">
+            {% autoescape off %}{{ artwork.text }}{% endautoescape %}
+          </p>
+          {% endif %}
+          <div class="authors">
+            <span>by&nbsp;</span>
+            {% for author in artwork.author.all %}
+            <a href="/artworks/author/{{ author.username }}/" itemprop="author">{{ author.artist.name }}</a>{% if not forloop.last %},{% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% if artwork.latitude and artwork.longitude %}
+        <div>
+        <a id="mapheader" class="mapheader visible" href="http://maps.yandex.com/?ll={{ artwork.longitude }},{{ artwork.latitude }}&amp;size=600,400&amp;z=15&amp;l=sat,skl&amp;pt={{ artwork.longitude }},{{ artwork.latitude }},pm2vvm&amp;lang=en-US" target="_blank">Show on map</a>
+        <div id="map" class="map minimized" itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
+          <noscript><p>
+            JavaScript not enabled. Please enable JavaScript in your browser settings.<br />
+            <a href="http://maps.yandex.com/?ll={{ artwork.longitude }},{{ artwork.latitude }}&amp;size=600,400&amp;z=15&amp;l=sat,skl&amp;pt={{ artwork.longitude }},{{ artwork.latitude }},pm2vvm&amp;lang=en-US" target="_blank">See the map</a> on Yandex.Maps.
+          </p></noscript>
+          <!-- http://static-maps.yandex.ru/1.x/?ll={{ artwork.longitude }},{{ artwork.latitude }}&amp;size=600,400&amp;z=15&amp;l=sat,skl&amp;pt={{ artwork.longitude }},{{ artwork.latitude }},pm2vvm&amp;lang=en-US -->
+          <meta itemprop="latitude" content="{{ artwork.latitude }}" />
+          <meta itemprop="longitude" content="{{ artwork.longitude }}" />
+        </div>
+        </div>
+        {% endif %}
+        {% if artwork.get_previous_by_time or artwork.get_next_by_time %}
+        <nav class="navigation">
+          {% if artwork.get_previous_by_time %}
+            <a href="/artworks/{{ artwork.get_previous_by_time.id }}/" title="{{ artwork.get_previous_by_time.title }}" id="PaginationPrevious">Previous</a>
+          {% else %}
+            <span>Previous</span>
+          {% endif %}
+          {% if artwork.get_next_by_time %}
+            <a href="/artworks/{{ artwork.get_next_by_time.id }}/" title="{{ artwork.get_next_by_time.title }}" id="PaginationNext">Next</a>
+          {% else %}
+            <span>Next</span>
+          {% endif %}
+        </nav>
+        {% endif %}
+        {% if user.is_authenticated %}
+        <div class="edit"><a href="{% url 'admin:artworks_artwork_change' artwork.id %}">Edit this artwork</a></div>
+        {% endif %}
+      </article>
+    </section>
+{% endspaceless %}{% endblock %}

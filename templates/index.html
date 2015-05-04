@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static thumbnail %}
+
+{% block keywords %}{{ block.super }}, recent, news, about{% endblock %}
+{% block description %}Main page of Kiuss site.{% endblock %}
+{% block head-items %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/index-mq.css" %}">
+{% endblock %}
+{% block head-extras %}
+    <style>
+      .background {
+        background: url({{ random_artwork.image|thumbnail_url:'400pxw' }}) no-repeat center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+      }
+    </style>
+{% endblock %}
+{% block content %}
+    <div class="background"></div>
+    <section class="content">
+      <article class="logo">
+        <div class="title"><a href="/about/"><img src="{% static "images/main-logo.png" %}" alt="Kiuss" /></a></div>
+        <div class="browse"><a href="/artworks/"><img src="{% static "images/browse.png" %}" alt="browse photos" /></a></div>
+      </article>
+    </section>
+{% endblock %}
