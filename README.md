@@ -69,6 +69,12 @@ Also, you are welcome to fork this project!
 
 ## License
 
-This project is licensed under [Mit License](MIT-LICENSE.txt).
+The project itself is licensed under [Mit License](MIT-LICENSE.txt).
+
+[HTML5 Shiv](https://github.com/aFarkas/html5shiv),
+[css3-mediaqueries-js](https://code.google.com/p/css3-mediaqueries-js/),
+[jQuery](http://jquery.org/),
+[jQuery mousewheel plugin](https://github.com/jquery/jquery-mousewheel) and
+[jQuery nicescroll plugin](https://github.com/inuyaksa/jquery.nicescroll), used in this project are licensed under MIT License.
 
 [Fancybox](http://www.fancyapps.com/fancybox/) is licensed under [CC BY-NC 3.0](http://creativecommons.org/licenses/by-nc/3.0/).
