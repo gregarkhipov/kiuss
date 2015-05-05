@@ -1,4 +1,6 @@
 local_settings.py
 *.pyc
+*.log
+*.db
 env/*
 local_files/*
