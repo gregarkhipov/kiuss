@@ -4,3 +4,4 @@ local_settings.py
 *.db
 env/*
 local_files/*
+static/fonts/*
