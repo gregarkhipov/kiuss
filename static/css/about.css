@@ -148,3 +148,7 @@ section {
 .social .vimeo img:hover {
   background: #1ea8e5;
 }
+
+.social .github img:hover {
+  background: #4183c4;
+}
