@@ -6,18 +6,6 @@
 {% block description %}{{ artwork.title }} on Kiuss site.{% endblock %}
 {% block head-extras %}
     <script src="{% static "js/navigation.js" %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static "css/jquery.fancybox.css" %}" />
-    <script src="{% static "js/jquery.fancybox.js" %}"></script>
-    <script src="{% static "js/jquery.mousewheel-3.0.6.pack.js" %}"></script>
-    <script type="text/javascript">
-    	$(document).ready(function() {
-  			$('.fancybox').fancybox({
-  				openEffect  : 'none',
-  				closeEffect	: 'none',
-          title : false,
-        });
-  		});
-  	</script>
     <style>
       .background {
         display: block;
@@ -57,23 +45,23 @@
     <div class="background"></div>
     <section class="artcontent">
       <article itemscope itemtype="http://schema.org/Painting" class="detail">
-        <a itemprop="image" class="img fancybox" data-fancybox-group="gallery" title="{{ artwork.title }}" href="{{ artwork.image.url }}" target="_blank">
+        <a itemprop="image" class="img" title="{{ artwork.title }}" href="{{ artwork.image.url }}" target="_blank">
           <img src="{{ artwork.image|thumbnail_url:'1400pxw' }}" alt="{{ artwork.title }}" />
         </a>
         <div class="photos">
           {% if artwork.image_2 %}
-          <a itemprop="image" class="img fancybox" data-fancybox-group="gallery" title="{{ artwork.title }}" href="{{ artwork.image_2.url }}" target="_blank">
-            <img src="{{ artwork.image_2|thumbnail_url:'400pxw' }}" alt="{{ artwork.title }} 2" class="small" />
+          <a itemprop="image" class="img" title="{{ artwork.title }}" href="{{ artwork.image_2.url }}" target="_blank">
+            <img src="{{ artwork.image_2|thumbnail_url:'400pxw' }}" alt="{{ artwork.title }} 2" />
           </a>
           {% endif %}
           {% if artwork.image_3 %}
-          <a itemprop="image" class="img fancybox" data-fancybox-group="gallery" title="{{ artwork.title }}" href="{{ artwork.image_3.url }}" target="_blank">
-            <img src="{{ artwork.image_3|thumbnail_url:'400pxw' }}" alt="{{ artwork.title }} 3" class="small" />
+          <a itemprop="image" class="img" title="{{ artwork.title }}" href="{{ artwork.image_3.url }}" target="_blank">
+            <img src="{{ artwork.image_3|thumbnail_url:'400pxw' }}" alt="{{ artwork.title }} 3" />
           </a>
           {% endif %}
           {% if artwork.image_4 %}
-          <a itemprop="image" class="img fancybox" data-fancybox-group="gallery" title="{{ artwork.title }}" href="{{ artwork.image_4.url }}" target="_blank">
-            <img src="{{ artwork.image_4|thumbnail_url:'400pxw' }}" alt="{{ artwork.title }} 4" class="small" />
+          <a itemprop="image" class="img" title="{{ artwork.title }}" href="{{ artwork.image_4.url }}" target="_blank">
+            <img src="{{ artwork.image_4|thumbnail_url:'400pxw' }}" alt="{{ artwork.title }} 4" />
           </a>
           {% endif %}
         </div>
