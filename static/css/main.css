@@ -212,16 +212,6 @@ header nav a.back::before {
   -webkit-transition: overflow .5s ease-in;
 }
 
-/*
-.artcontent .aside .projects {
-  overflow-y: hidden;
-}
-
-.artcontent .aside:hover .projects {
-  overflow-y: scroll;
-}
-*/
-
 .artcontent .aside .projects a {
   display: block;
   margin: 10px 30px;
@@ -424,24 +414,6 @@ header nav a.back::before {
   font-size: 30px;
 }
 
-
-
-/* ------------------------------------------ */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .categories,
 .authors,
 .artworks {
@@ -470,19 +442,13 @@ header nav a.back::before {
   font-weight: normal;
 }
 
-
-
-
-
-
-
 .artcontent article.detail .photos {
   display: none;
   text-align: center;
   width: auto;
 }
 
-.artcontent article.detail img {
+.artcontent article.detail .img img {
   display: block;
   max-width: 700px;
   max-height: 600px;
@@ -493,64 +459,6 @@ header nav a.back::before {
   padding: 5px;
   background: rgba(255, 255, 255, .5);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, .2), 0px 1px 7px rgba(0, 0, 0, .1);
-}
-
-.artcontent article .mapheader {
-  display: none;
-  font-weight: normal;
-  font-size: 10pt;
-  margin: 10px auto;
-  color: rgba(0, 0, 0, .4);
-  cursor: pointer; cursor: hand;
-}
-
-.artcontent article .mapheader:hover,
-.artcontent article .mapheader.clicked {
-  color: #800;
-}
-
-.artcontent article .mapheader.visible {
-  display: inline-block;
-}
-
-.artcontent article .map {
-  width: 600px;
-  height: 400px;
-  display: block;
-  margin: 10px auto;
-  margin-top: 0px;
-  background: rgba(0, 0, 0, .1);
-  overflow: hidden;
-  color: rgba(0, 0, 0, .4);
-  font-size: 12pt;
-}
-
-.artcontent article .map p {
-  margin-top: 20px;
-}
-
-.artcontent article .map.minimized {
-  display: none;
-}
-
-.artcontent article .map, .artcontent article .map * {
-  -webkit-transition: none;
-  -moz-transition: none;
-  -o-transition: none;
-  transition: none;
-}
-
-.artcontent article.map .map {
-  width: 700px;
-  height: 500px;
-}
-
-.artcontent article.map h3 {
-  display: block;
-  font-size: 14pt;
-  margin-bottom: 10px;
-  font-weight: normal;
-  color: rgba(0, 0, 0, .6);
 }
 
 .artcontent article.detail .description {
@@ -575,7 +483,7 @@ header nav a.back::before {
 }
 
 .navigation {
-  display: inline-block;
+  display: block;
   text-align: center;
   margin: 3px auto;
 }
@@ -605,16 +513,6 @@ header nav a.back::before {
   color: rgba(0, 0, 0, .4);
   background: rgba(0, 0, 0, .01);
 }
-
-
-
-
-
-
-
-
-
-
 
 .artcontent .projectdetail, 
 .artcontent .alldetail {

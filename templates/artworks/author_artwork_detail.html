@@ -16,37 +16,8 @@
   				closeEffect	: 'none',
           title : false,
         });
-        $("#mapheader").click(function(e){
-          e.preventDefault();
-          $("#mapheader").toggleClass("clicked");
-          $("#map").toggleClass("minimized");
-        });
   		});
   	</script>
-    {% if artwork.latitude and artwork.longitude %}
-    <script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&amp;lang=en-US" type="text/javascript"></script>
-    <script type="text/javascript">
-      ymaps.ready(init);
-        var artworkMap, artworkPlacemark;
-        function init(){     
-          artworkMap = new ymaps.Map ("map", {
-            center: [{{ artwork.latitude }}, {{ artwork.longitude }}],
-            zoom: 15, 
-            behaviors: ['multiTouch', 'drag']
-          });
-          artworkMap.setType('yandex#hybrid');
-          artworkPlacemark = new ymaps.Placemark([{{ artwork.latitude }}, {{ artwork.longitude }}], { 
-            iconContent: '{{ artwork.title }}'
-          }, {
-            preset: 'twirl#violetStretchyIcon'
-          });
-          artworkMap.geoObjects.add(artworkPlacemark);
-          artworkMap.controls.add(new ymaps.control.ZoomControl());
-          artworkMap.controls.add('typeSelector');
-          artworkMap.controls.add('scaleLine');
-        }
-    </script>
-    {% endif %}
     <style>
       .background {
         display: block;
@@ -124,18 +95,7 @@
           </div>
         </div>
         {% if artwork.latitude and artwork.longitude %}
-        <div>
-        <a id="mapheader" class="mapheader visible" href="http://maps.yandex.com/?ll={{ artwork.longitude }},{{ artwork.latitude }}&amp;size=600,400&amp;z=15&amp;l=sat,skl&amp;pt={{ artwork.longitude }},{{ artwork.latitude }},pm2vvm&amp;lang=en-US" target="_blank">Show on map</a>
-        <div id="map" class="map minimized" itemprop="geo" itemscope itemtype="http://schema.org/GeoCoordinates">
-          <noscript><p>
-            JavaScript not enabled. Please enable JavaScript in your browser settings.<br />
-            <a href="http://maps.yandex.com/?ll={{ artwork.longitude }},{{ artwork.latitude }}&amp;size=600,400&amp;z=15&amp;l=sat,skl&amp;pt={{ artwork.longitude }},{{ artwork.latitude }},pm2vvm&amp;lang=en-US" target="_blank">See the map</a> on Yandex.Maps.
-          </p></noscript>
-          <!-- http://static-maps.yandex.ru/1.x/?ll={{ artwork.longitude }},{{ artwork.latitude }}&amp;size=600,400&amp;z=15&amp;l=sat,skl&amp;pt={{ artwork.longitude }},{{ artwork.latitude }},pm2vvm&amp;lang=en-US -->
-          <meta itemprop="latitude" content="{{ artwork.latitude }}" />
-          <meta itemprop="longitude" content="{{ artwork.longitude }}" />
-        </div>
-        </div>
+        <a href="http://www.openstreetmap.org/?mlat={{ artwork.latitude }}&amp;mlon={{ artwork.longitude }}#map=15/{{ artwork.latitude }}/{{ artwork.longitude }}" target="_blank">{{ artwork.latitude }}, {{ artwork.longitude }}</a>
         {% endif %}
         {% if prev_artwork or next_artwork %}
         <nav class="navigation">
@@ -152,7 +112,7 @@
         </nav>
         {% endif %}
         {% if user.is_authenticated %}
-        <div class="edit"><a href="{% url 'admin:artworks_artwork_change' artwork.id %}">Edit this artwork</a></div>
+        <a href="{% url 'admin:artworks_artwork_change' artwork.id %}">Edit this artwork</a>
         {% endif %}
       </article>
     </section>

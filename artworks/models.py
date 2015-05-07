@@ -48,7 +48,7 @@ class Artwork(models.Model):
         return str(self.id) + " " + self.title
 
     def get_absolute_url(self):
-        return "/artworks/all/%i/%s/" % (self.id, self.slug)
+        return "/artworks/%i/" % self.id
 
     def save(self, *args, **kwargs):
         if not self.id:
@@ -90,3 +90,7 @@ class Project(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return "/artworks/%s/" % self.slug
+
