@@ -3,5 +3,6 @@ local_settings.py
 *.log
 *.db
 env/*
+media/*
 local_files/*
 static/fonts/*
