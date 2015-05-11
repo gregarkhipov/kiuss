@@ -71,8 +71,6 @@ Also, you're always welcome to fork this project!
 
 The project itself is licensed under [MIT License](MIT-LICENSE.txt).
 
-[HTML5 Shiv](https://github.com/aFarkas/html5shiv),
-[css3-mediaqueries-js](https://code.google.com/p/css3-mediaqueries-js/),
 [jQuery](http://jquery.org/),
 [jQuery mousewheel plugin](https://github.com/jquery/jquery-mousewheel) and
 [jQuery nicescroll plugin](https://github.com/inuyaksa/jquery.nicescroll), used in this project, are licensed under MIT License.

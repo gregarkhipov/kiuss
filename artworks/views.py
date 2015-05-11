@@ -7,6 +7,9 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 from django.views.generic.base import RedirectView
 
+global items_per_page
+items_per_page = 24
+
 class ProjectDetailRedirectView(RedirectView):
 
     def get_redirect_url(self, project):
@@ -20,8 +23,8 @@ class AuthorRedirectView(RedirectView):
 def ArtworkList(request, page=1):
     projects = Project.objects.all()
     artworks_list = Artwork.objects.all().order_by('-time')
-    items_per_page = request.GET.get('items', '24')
-    paginator = Paginator(artworks_list, items_per_page)
+    get_items_per_page = request.GET.get('items', items_per_page)
+    paginator = Paginator(artworks_list, get_items_per_page)
     random_artwork = artworks_list.order_by('?')[0]
 
     try:
@@ -48,9 +51,8 @@ def ArtworkDetail(request, pk, slug=None):
     get_object_or_404(Artwork.objects, pk=pk)
     artworks_list = Artwork.objects.all().order_by('-time')
     artwork = artworks_list.get(pk=pk)
-    
-    items_per_page = request.GET.get('items', '24')
-    paginator = Paginator(artworks_list, items_per_page)
+    get_items_per_page = request.GET.get('items', items_per_page)
+    paginator = Paginator(artworks_list, get_items_per_page)
     def artwork_page():
         for p in paginator.page_range:
             if (artwork in paginator.page(p)):
@@ -86,8 +88,8 @@ def ProjectList(request):
 
 def ProjectDetail(request, project, page=1):
     artworks_list = get_list_or_404(Artwork.objects.order_by('-time'), project__slug=project)
-    items_per_page = request.GET.get('items', '24')
-    paginator = Paginator(artworks_list, items_per_page)
+    get_items_per_page = request.GET.get('items', items_per_page)
+    paginator = Paginator(artworks_list, get_items_per_page)
     random_artwork = Artwork.objects.filter(project__slug=project).order_by('?')[0]
     
     try:
@@ -112,9 +114,8 @@ def ProjectArtworkDetail(request, project, pk):
     get_object_or_404(Artwork.objects, pk=pk, project__slug=project)
     artworks_list = Artwork.objects.filter(project__slug=project).order_by('-time')
     artwork = artworks_list.get(pk=pk)
-    
-    items_per_page = request.GET.get('items', '24')
-    paginator = Paginator(artworks_list, items_per_page)
+    get_items_per_page = request.GET.get('items', items_per_page)
+    paginator = Paginator(artworks_list, get_items_per_page)
     def artwork_page():
         for p in paginator.page_range:
             if (artwork in paginator.page(p)):
@@ -147,8 +148,8 @@ def ProjectArtworkDetail(request, project, pk):
 
 def AuthorDetail(request, username, page=1):
     artworks_list = get_list_or_404(Artwork.objects.order_by('-time'), author__username=username)
-    items_per_page = request.GET.get('items', '24')
-    paginator = Paginator(artworks_list, items_per_page)
+    get_items_per_page = request.GET.get('items', items_per_page)
+    paginator = Paginator(artworks_list, get_items_per_page)
 
     try:
         artworks = paginator.page(page)
@@ -172,9 +173,8 @@ def AuthorArtworkDetail(request, username, pk):
     artworks = get_list_or_404(Artwork.objects.order_by('-time'), author__username=username)
     artworks_list = Artwork.objects.filter(author__username=username).order_by('-time')
     artwork = artworks_list.get(pk=pk)
-    
-    items_per_page = request.GET.get('items', '24')
-    paginator = Paginator(artworks_list, items_per_page)
+    get_items_per_page = request.GET.get('items', items_per_page)
+    paginator = Paginator(artworks_list, get_items_per_page)
     def artwork_page():
         for p in paginator.page_range:
             if (artwork in paginator.page(p)):
@@ -205,3 +205,4 @@ def AuthorArtworkDetail(request, username, pk):
         context,
         context_instance = RequestContext(request),
     )
+

@@ -7,23 +7,12 @@
     <meta name="keywords" content="{% block keywords %}Kiuss, collective, art, graffiti{% endblock %}" />
     <meta name="description" content="{% block description %}{% endblock %}" />
     <link href="{% static "images/favicon.ico" %}" rel="shortcut icon" type="image/vnd.microsoft.icon" />
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static "images/apple-touch-icon-144x144.png" %}" />
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static "images/apple-touch-icon-114x114.png" %}" />
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static "images/apple-touch-icon-72x72.png" %}" />
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static "images/apple-touch-icon-57x57.png" %}" />
+    <link rel="apple-touch-icon" href="{% static "images/apple-touch-icon.png" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/reset.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/fonts.css" %}">
     {% block head-items %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/reset.css" %}">
     <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
-    <script src="{% static "js/jquery.min.js" %}"></script>
     {% endblock %}
-    <!--[if lt IE 8]>
-      <meta http-equiv="refresh" content="0; url=http://www.google.com/chrome/" />
-    <![endif]-->
-    <!--[if gte IE 9]>
-      <script src="{% static "js/html5.js" %}"></script>
-      <script src="{% static "js/css3-mediaqueries.js" %}"></script>
-    <![endif]-->
     {% block head-extras %}{% endblock %}
   </head>
   <body>
