@@ -3,6 +3,9 @@
 
 {% block title %}404 Not Found &mdash; {{ block.super }}{% endblock %}
 {% block description %}Page not found.{% endblock %}
+{% block head-items %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/main.css" %}">
+{% endblock %}
 {% block header %}
     <header>
       <nav>
