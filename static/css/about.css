@@ -109,9 +109,10 @@ section {
   height: auto;
 }
 
-.social {
+.links {
   position: absolute;
-  bottom: 0px;
+  height: 32px;
+  bottom: 2px;
   right: 0px;
   left: 0px;
   margin-right: 0px;
@@ -119,36 +120,42 @@ section {
   z-index: 40;
 }
 
-.social a {
+.links a {
   display: inline-block;
-  margin-left: 5px;
-}
-
-.social img {
+  margin: 4px;
+  height: 32px;
   width: 32px;
-  height: auto;
 }
 
-.social .mail img:hover {
+.links img {
+  height: 32px;
+  width: 32px;
+}
+
+.links .mail:hover {
   background: #D3C8B5;
 }
 
-.social .twitter img:hover {
+.links .twitter:hover {
   background: #55acee;
 }
 
-.social .facebook img:hover {
+.links .facebook:hover {
   background: #4462a1;
 }
 
-.social .vk img:hover {
+.links .vk:hover {
   background: #5675a3;
 }
 
-.social .vimeo img:hover {
+.links .vimeo:hover {
   background: #1ea8e5;
 }
 
-.social .github img:hover {
+.links .github:hover {
   background: #4183c4;
+}
+
+.links .legal:hover {
+  background: #abb3ac;
 }
