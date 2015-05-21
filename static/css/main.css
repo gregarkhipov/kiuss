@@ -412,14 +412,6 @@ header nav a.back::before {
   line-height: 120%;
 }
 
-.artcontent a {
-  color: #008;
-}
-
-.artcontent a:hover {
-  color: #800;
-}
-
 .artcontent article.detail .photos {
   display: none;
   text-align: center;
@@ -467,6 +459,16 @@ header nav a.back::before {
   display: inline-block;
   font-size: 12pt;
   line-height: 120%;
+}
+
+.artcontent article p,
+.authors a {
+  color: #008;
+}
+
+.artcontent article p:hover,
+.authors a:hover {
+  color: #800;
 }
 
 .navigation {
