@@ -461,12 +461,12 @@ header nav a.back::before {
   line-height: 120%;
 }
 
-.artcontent article p,
+.artcontent article p a,
 .authors a {
   color: #008;
 }
 
-.artcontent article p:hover,
+.artcontent article p a:hover,
 .authors a:hover {
   color: #800;
 }
