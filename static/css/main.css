@@ -412,18 +412,11 @@ header nav a.back::before {
   line-height: 120%;
 }
 
-.authors a,
-.authors span {
-  display: inline-block;
-  font-size: 12pt;
-  line-height: 120%;
-}
-
-.authors a {
+.artcontent a {
   color: #008;
 }
 
-.authors a:hover {
+.artcontent a:hover {
   color: #800;
 }
 
@@ -467,6 +460,13 @@ header nav a.back::before {
 
 .artcontent article p {
   font-size: 12pt;
+}
+
+.authors a,
+.authors span {
+  display: inline-block;
+  font-size: 12pt;
+  line-height: 120%;
 }
 
 .navigation {
