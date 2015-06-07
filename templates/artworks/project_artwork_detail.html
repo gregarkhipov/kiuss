@@ -5,6 +5,7 @@
 {% block keywords %}{{ block.super }}, artworks, {{ artwork.title }}{% endblock %}
 {% block description %}{{ artwork.title }} on Kiuss site.{% endblock %}
 {% block head-extras %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/artworks.css" %}">
     <script src="{% static "js/navigation.js" %}"></script>
     <style>
       .background {
@@ -91,10 +92,10 @@
             <a href="/artworks/author/{{ author.username }}/" itemprop="author">{{ author.artist.name }}</a>{% if not forloop.last %},{% endif %}
             {% endfor %}
           </div>
+          {% if artwork.latitude and artwork.longitude %}
+          <a class="longlat" href="http://www.openstreetmap.org/?mlat={{ artwork.latitude }}&amp;mlon={{ artwork.longitude }}#map=15/{{ artwork.latitude }}/{{ artwork.longitude }}" target="_blank">{{ artwork.latitude }}, {{ artwork.longitude }}</a>
+          {% endif %}
         </div>
-        {% if artwork.latitude and artwork.longitude %}
-        <a href="http://www.openstreetmap.org/?mlat={{ artwork.latitude }}&amp;mlon={{ artwork.longitude }}#map=15/{{ artwork.latitude }}/{{ artwork.longitude }}" target="_blank">{{ artwork.latitude }}, {{ artwork.longitude }}</a>
-        {% endif %}
         {% if prev_artwork or next_artwork %}
         <nav class="navigation">
           {% if prev_artwork %}

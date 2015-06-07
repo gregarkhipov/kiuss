@@ -3,11 +3,8 @@
 
 {% block keywords %}{{ block.super }}, recent, news, about{% endblock %}
 {% block description %}Main page of Kiuss site.{% endblock %}
-{% block head-items %}
-    <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "css/index-mq.css" %}">
-{% endblock %}
 {% block head-extras %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
     <style>
       .background {
         {% thumbnail random_artwork.image "400x400" crop="center" as im %}
