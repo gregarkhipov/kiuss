@@ -1,4 +1,4 @@
-from artworks.models import *
+from .models import *
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.template import RequestContext
 from django.http import HttpResponse, Http404
@@ -20,7 +20,7 @@ class AuthorRedirectView(RedirectView):
     def get_redirect_url(self, username):
         return '/artworks/author/%s/' % username
 
-def ArtworkList(request, page=1):
+def artwork_list(request, page=1):
     projects = Project.objects.all()
     artworks_list = Artwork.objects.all().order_by('-time')
     get_items_per_page = request.GET.get('items', items_per_page)
@@ -47,7 +47,7 @@ def ArtworkList(request, page=1):
         context_instance = RequestContext(request),
     )
 
-def ArtworkDetail(request, pk, slug=None):
+def artwork_detail(request, pk):
     get_object_or_404(Artwork.objects, pk=pk)
     artworks_list = Artwork.objects.all().order_by('-time')
     artwork = artworks_list.get(pk=pk)
@@ -71,7 +71,7 @@ def ArtworkDetail(request, pk, slug=None):
         context_instance = RequestContext(request),
     )
     
-def ProjectList(request):
+def project_list(request):
     projects = Project.objects.all()
     random_artwork = Artwork.objects.all().order_by('?')[0]
 
@@ -86,7 +86,7 @@ def ProjectList(request):
         context_instance = RequestContext(request),
     )
 
-def ProjectDetail(request, project, page=1):
+def project_detail(request, project, page=1):
     artworks_list = get_list_or_404(Artwork.objects.order_by('-time'), project__slug=project)
     get_items_per_page = request.GET.get('items', items_per_page)
     paginator = Paginator(artworks_list, get_items_per_page)
@@ -110,7 +110,7 @@ def ProjectDetail(request, project, page=1):
         context_instance = RequestContext(request),
     )
 
-def ProjectArtworkDetail(request, project, pk):
+def project_artwork_detail(request, project, pk):
     get_object_or_404(Artwork.objects, pk=pk, project__slug=project)
     artworks_list = Artwork.objects.filter(project__slug=project).order_by('-time')
     artwork = artworks_list.get(pk=pk)
@@ -146,7 +146,7 @@ def ProjectArtworkDetail(request, project, pk):
         context_instance = RequestContext(request),
     )
 
-def AuthorDetail(request, username, page=1):
+def author_detail(request, username, page=1):
     artworks_list = get_list_or_404(Artwork.objects.order_by('-time'), author__username=username)
     get_items_per_page = request.GET.get('items', items_per_page)
     paginator = Paginator(artworks_list, get_items_per_page)
@@ -168,7 +168,7 @@ def AuthorDetail(request, username, page=1):
         context_instance = RequestContext(request),
     )
     
-def AuthorArtworkDetail(request, username, pk):
+def author_artwork_detail(request, username, pk):
     get_object_or_404(Artwork.objects, pk=pk, author__username=username)
     artworks = get_list_or_404(Artwork.objects.order_by('-time'), author__username=username)
     artworks_list = Artwork.objects.filter(author__username=username).order_by('-time')

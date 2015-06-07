@@ -2,7 +2,7 @@ from artworks.models import *
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-def Main(request):
+def main(request):
     random_artwork = Artwork.objects.all().order_by('?')[0]
 
     context = {
@@ -14,5 +14,5 @@ def Main(request):
         context_instance = RequestContext(request),
     )
 
-def About(request):
+def about(request):
     return render_to_response('about.html')

@@ -2,6 +2,7 @@ local_settings.py
 *.pyc
 *.log
 *.db
+*.sqlite3
 env/*
 media/*
 local_files/*

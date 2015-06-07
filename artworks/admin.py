@@ -1,5 +1,5 @@
 from django.contrib import admin
-from artworks.models import *
+from .models import *
 
 admin.site.register(Artwork)
 admin.site.register(Category)

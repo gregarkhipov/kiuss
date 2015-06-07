@@ -10,7 +10,9 @@
 {% block head-extras %}
     <style>
       .background {
-        background: url({{ random_artwork.image|thumbnail_url:'400pxw' }}) no-repeat center center;
+        {% thumbnail random_artwork.image "400x400" crop="center" as im %}
+        background: url({{ im.url }}) no-repeat center center;
+        {% endthumbnail %}
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;

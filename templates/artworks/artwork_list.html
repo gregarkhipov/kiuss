@@ -34,7 +34,9 @@
         opacity: .1;
         filter: url({% static "images/filters.svg" %}#blur);
         -webkit-filter: blur(3px);
-        background: url({{ random_artwork.image|thumbnail_url:'400px' }}) no-repeat center center fixed; 
+        {% thumbnail random_artwork.image "400x400" crop="center" as im %}
+        background: url({{ im.url }}) no-repeat center center;
+        {% endthumbnail %}
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -53,14 +55,20 @@
         </nav>
         <div class="artists">
           {% for artist in artists %}
-          <a href="/artworks/author/{{ artist.user.username }}/" title="{{ artist.first_name }} {{ artist.last_name }}"><img src="{{ artist.avatar|thumbnail_url:'100px' }}" alt="{{ artist.first_name }} {{ artist.last_name }}" /></a>
+          <a href="/artworks/author/{{ artist.user.username }}/" title="{{ artist.first_name }} {{ artist.last_name }}">
+            {% thumbnail artist.avatar "100x100" crop="center" as im %}
+            <img src="{{ im.url }}" alt="{{ artist.first_name }} {{ artist.last_name }}" />
+            {% endthumbnail %}
+          </a>
           {% endfor %}
         </div>
         <div class="shadow-top"><div></div></div>
         <div class="projects" id="projects">
           {% for project in projects %}
           <a href="/artworks/{{ project.slug }}/">
-            <img src="{{ project.image|thumbnail_url:'100px' }}" alt="{{ project.name }}" title="{{ project.name }}" />
+            {% thumbnail project.image "100x100" crop="center" as im %}
+            <img src="{{ im.url }}" alt="{{ project.name }}" title="{{ project.name }}" />
+            {% endthumbnail %}
             <span>{{ project.name }}</span>
           </a>
           {% endfor %}
@@ -71,8 +79,10 @@
         {% for artwork in artworks %}
         <article itemscope itemtype="http://schema.org/Painting" class="list">
           <div class="layer1">
-            <a href="/artworks/{{ artwork.id }}/">            
-              <img itemprop="image" src="{{ artwork.image|thumbnail_url:'300px' }}" alt="{{ artwork.title }}" />
+            <a href="/artworks/{{ artwork.id }}/">   
+              {% thumbnail artwork.image "300x300" crop="center" as im %}
+              <img itemprop="image" src="{{ im.url }}" alt="{{ artwork.title }}" />
+              {% endthumbnail %}
             </a>
           </div>
           <div class="layer2">

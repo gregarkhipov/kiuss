@@ -32,7 +32,9 @@
         opacity: .1;
         filter: url({% static "images/filters.svg" %}#blur);
         -webkit-filter: blur(3px);
-        background: url({{ random_artwork.image|thumbnail_url:'400px' }}) no-repeat center center fixed; 
+        {% thumbnail artwork.image "400x400" crop="center" as im %}
+        background: url({{ im.url }}) no-repeat center center;
+        {% endthumbnail %}
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -51,7 +53,9 @@
         </nav>
         <a href="/artworks/" class="back">Artworks</a>
         <article class="project">
-          <img src="{{ project.image|thumbnail_url:'300px' }}" />
+          {% thumbnail project.image "300x300" crop="center" as im %}
+          <img itemprop="image" src="{{ im.url }}" alt="{{ artwork.title }}" />
+          {% endthumbnail %}
           <h2>{{ project.name }}</h2>
           {% if project.description %}
           <p>
@@ -64,8 +68,10 @@
         {% for artwork in artworks %}
         <article itemscope itemtype="http://schema.org/Painting" class="list">
           <div class="layer1">
-            <a href="/artworks/{{ project.slug }}/{{ artwork.id }}/">            
-              <img itemprop="image" src="{{ artwork.image|thumbnail_url:'300px' }}" alt="{{ artwork.title }}" />
+            <a href="/artworks/{{ project.slug }}/{{ artwork.id }}/">
+              {% thumbnail artwork.image "300x300" crop="center" as im %}
+              <img itemprop="image" src="{{ im.url }}" alt="{{ artwork.title }}" />
+              {% endthumbnail %}
             </a>
           </div>
           <div class="layer2">

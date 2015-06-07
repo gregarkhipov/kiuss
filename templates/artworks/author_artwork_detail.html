@@ -19,7 +19,9 @@
         opacity: .1;
         filter: url({% static "images/filters.svg" %}#blur);
         -webkit-filter: blur(3px);
-        background: url({{ artwork.image|thumbnail_url:'400px' }}) no-repeat center center fixed; 
+        {% thumbnail artwork.image "400x400" crop="center" as im %}
+        background: url({{ im.url }}) no-repeat center center;
+        {% endthumbnail %}
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
@@ -46,22 +48,30 @@
     <section class="artcontent">
       <article itemscope itemtype="http://schema.org/Painting" class="detail">
         <a itemprop="image" class="img" title="{{ artwork.title }}" href="{{ artwork.image.url }}" target="_blank">
-          <img src="{{ artwork.image|thumbnail_url:'1400pxw' }}" alt="{{ artwork.title }}" />
+          {% thumbnail artwork.image "1400" as im %}
+          <img src="{{ im.url }}" alt="{{ artwork.title }}" />
+          {% endthumbnail %}
         </a>
         <div class="photos">
           {% if artwork.image_2 %}
           <a itemprop="image" class="img" title="{{ artwork.title }}" href="{{ artwork.image_2.url }}" target="_blank">
-            <img src="{{ artwork.image_2|thumbnail_url:'400pxw' }}" alt="{{ artwork.title }} 2" />
+            {% thumbnail artwork.image_2 "400" as im %}
+            <img src="{{ im.url }}" alt="{{ artwork.title }} 2" />
+            {% endthumbnail %}
           </a>
           {% endif %}
           {% if artwork.image_3 %}
           <a itemprop="image" class="img" title="{{ artwork.title }}" href="{{ artwork.image_3.url }}" target="_blank">
-            <img src="{{ artwork.image_3|thumbnail_url:'400pxw' }}" alt="{{ artwork.title }} 3" />
+            {% thumbnail artwork.image_3 "400" as im %}
+            <img src="{{ im.url }}" alt="{{ artwork.title }} 3" />
+            {% endthumbnail %}
           </a>
           {% endif %}
           {% if artwork.image_4 %}
           <a itemprop="image" class="img" title="{{ artwork.title }}" href="{{ artwork.image_4.url }}" target="_blank">
-            <img src="{{ artwork.image_4|thumbnail_url:'400pxw' }}" alt="{{ artwork.title }} 4" />
+            {% thumbnail artwork.image_4 "400" as im %}
+            <img src="{{ im.url }}" alt="{{ artwork.title }} 4" />
+            {% endthumbnail %}
           </a>
           {% endif %}
         </div>

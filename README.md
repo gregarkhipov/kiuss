@@ -15,10 +15,9 @@ You need to have these packages to be installed on your computer:
 
 These packages are also required and could be installed with pip using [`requirements.txt`](requirements.txt) file:
 
-* Django 1.5.12
-* South 1.0
-* Pillow 2.8.1
-* easy-thumbnails 1.5
+* Django 1.8
+* Pillow
+* sorl-thumbnail
 
 To do so, run
 
@@ -32,7 +31,7 @@ To deploy this project on you machine just clone the repo:
 
 Then create your `local_settings.py` file in `kiuss` directory using `local_settings_example.py` example.
 
-Also, read the docs for [Django 1.5](https://docs.djangoproject.com/en/1.5/), used in this project.
+Also, read the docs for [Django 1.8](https://docs.djangoproject.com/en/1.8/), used in this project.
 
 To set up your virtual environment, just run
 
@@ -52,14 +51,7 @@ First of all, set up database by running
 
     python manage.py syncdb
 
-To use migrations with database read [South docs](http://south.readthedocs.org/en/latest/).
-
-Uncomment these lines in `local_settings.py` file for debug mode:
-
-    #DEBUG = True
-    #TEMPLATE_DEBUG = DEBUG
-
-For first run use built-in dev server:
+For the first run use built-in dev server:
 
     python manage.py runserver
 
