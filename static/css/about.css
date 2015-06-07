@@ -6,7 +6,7 @@ header {
 
 .content {
   position: absolute;
-  margin: 0px auto;
+  margin: 0 auto;
   padding: 0;
   text-align: center;
   min-width: 700px;
