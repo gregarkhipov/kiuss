@@ -4,7 +4,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 SECRET_KEY = 'df6b8j1h6s45d23l5f16bj85h1a32l5s1d52f54k1012v5j65h46vh'
 
-#DEBUG = True
+# DEBUG = True
+# THUMBNAIL_DEBUG = True
 
 DATABASES = {
     'default': {
