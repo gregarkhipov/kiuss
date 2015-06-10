@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
@@ -5,6 +6,9 @@ from time import gmtime, strftime
 
 def image_name(instance, filename):
     return "artworks/images/%s_%s" % (strftime('%d-%m-%Y', gmtime()), filename)
+
+def avatar_name(instance, filename):
+    return "artists/images/%s_%s" % (strftime('%d-%m-%Y', gmtime()), filename)
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -15,9 +19,6 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = "Categories"
-
-    def get_absolute_url(self):
-        return "/artworks/category/%s/" % self.slug
 
 class Artwork(models.Model):
     title = models.CharField(max_length=100)
@@ -34,13 +35,10 @@ class Artwork(models.Model):
     image_4 = models.ImageField(upload_to=image_name, null=True, blank=True)
    
     def __unicode__(self):
-        return "%i %s" % (self.id, self.title)
+        return "%i %s" % (self.pk, self.title)
 
     def get_absolute_url(self):
-        return "/artworks/%i/" % self.id
-
-def avatar_name(instance, filename):
-    return "artists/images/%s_%s" % (strftime('%d-%m-%Y', gmtime()), filename)
+        return reverse('artwork_list', args=(self.pk,))
 
 class Artist(models.Model):
     user = models.OneToOneField(User)
@@ -57,7 +55,7 @@ class Artist(models.Model):
             return self.first_name
         else:
             return self.nickname
-    
+
     def __unicode__(self):
         if (self.first_name and self.last_name):
             return "%s %s" % (self.first_name, self.last_name)
@@ -76,5 +74,4 @@ class Project(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return "/artworks/%s/" % self.slug
-
+        return reverse('project_detail', args=(self.slug,))
