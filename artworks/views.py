@@ -1,11 +1,11 @@
 from .models import *
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
-from django.template import RequestContext
 from django.http import HttpResponse, Http404
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.urlresolvers import reverse
 from django.views.generic.base import RedirectView
+import random
 
 global items_per_page
 items_per_page = 24
@@ -25,7 +25,7 @@ def artwork_list(request, page=1):
     artworks_list = Artwork.objects.all().order_by('-time')
     get_items_per_page = request.GET.get('items', items_per_page)
     paginator = Paginator(artworks_list, get_items_per_page)
-    random_artwork = artworks_list.order_by('?')[0]
+    random_artwork = random.choice(artworks_list)
 
     try:
         artworks = paginator.page(page)
@@ -41,18 +41,18 @@ def artwork_list(request, page=1):
         'random_artwork' : random_artwork,
         'artists' : Artist.objects.all()
     }
+
     return render_to_response(
         'artworks/artwork_list.html',
-        context,
-        context_instance = RequestContext(request),
+        context
     )
 
 def artwork_detail(request, pk):
-    get_object_or_404(Artwork.objects, pk=pk)
     artworks_list = Artwork.objects.all().order_by('-time')
-    artwork = artworks_list.get(pk=pk)
+    artwork = get_object_or_404(artworks_list, pk=pk)
     get_items_per_page = request.GET.get('items', items_per_page)
     paginator = Paginator(artworks_list, get_items_per_page)
+
     def artwork_page():
         for p in paginator.page_range:
             if (artwork in paginator.page(p)):
@@ -67,13 +67,13 @@ def artwork_detail(request, pk):
 
     return render_to_response(
         'artworks/artwork_detail.html',
-        context,
-        context_instance = RequestContext(request),
+        context
     )
     
 def project_list(request):
     projects = Project.objects.all()
-    random_artwork = Artwork.objects.all().order_by('?')[0]
+    artworks_list = Artwork.objects.all()
+    random_artwork = random.choice(artworks_list.all())
 
     context = {
         'projects' : projects,
@@ -83,14 +83,13 @@ def project_list(request):
     return render_to_response(
         'artworks/project_list.html',
         context,
-        context_instance = RequestContext(request),
     )
 
 def project_detail(request, project, page=1):
-    artworks_list = get_list_or_404(Artwork.objects.order_by('-time'), project__slug=project)
+    artworks_list = Artwork.objects.filter(project__slug=project).order_by('-time')
     get_items_per_page = request.GET.get('items', items_per_page)
     paginator = Paginator(artworks_list, get_items_per_page)
-    random_artwork = Artwork.objects.filter(project__slug=project).order_by('?')[0]
+    random_artwork = random.choice(artworks_list)
     
     try:
         artworks = paginator.page(page)
@@ -106,14 +105,12 @@ def project_detail(request, project, page=1):
     }
     return render_to_response(
         'artworks/project_detail.html',
-        context,
-        context_instance = RequestContext(request),
+        context
     )
 
 def project_artwork_detail(request, project, pk):
-    get_object_or_404(Artwork.objects, pk=pk, project__slug=project)
     artworks_list = Artwork.objects.filter(project__slug=project).order_by('-time')
-    artwork = artworks_list.get(pk=pk)
+    artwork = get_object_or_404(artworks_list, pk=pk)
     get_items_per_page = request.GET.get('items', items_per_page)
     paginator = Paginator(artworks_list, get_items_per_page)
     def artwork_page():
@@ -142,12 +139,11 @@ def project_artwork_detail(request, project, pk):
     }
     return render_to_response(
         'artworks/project_artwork_detail.html',
-        context,
-        context_instance = RequestContext(request),
+        context
     )
 
 def author_detail(request, username, page=1):
-    artworks_list = get_list_or_404(Artwork.objects.order_by('-time'), author__username=username)
+    artworks_list = Artwork.objects.filter(author__username=username).order_by('-time')
     get_items_per_page = request.GET.get('items', items_per_page)
     paginator = Paginator(artworks_list, get_items_per_page)
 
@@ -164,15 +160,12 @@ def author_detail(request, username, page=1):
     }
     return render_to_response(
         'artworks/author_detail.html',
-        context,
-        context_instance = RequestContext(request),
+        context
     )
     
 def author_artwork_detail(request, username, pk):
-    get_object_or_404(Artwork.objects, pk=pk, author__username=username)
-    artworks = get_list_or_404(Artwork.objects.order_by('-time'), author__username=username)
     artworks_list = Artwork.objects.filter(author__username=username).order_by('-time')
-    artwork = artworks_list.get(pk=pk)
+    artwork = get_object_or_404(artworks_list, pk=pk)
     get_items_per_page = request.GET.get('items', items_per_page)
     paginator = Paginator(artworks_list, get_items_per_page)
     def artwork_page():
@@ -202,7 +195,6 @@ def author_artwork_detail(request, username, pk):
 
     return render_to_response(
         'artworks/author_artwork_detail.html',
-        context,
-        context_instance = RequestContext(request),
+        context
     )
 
