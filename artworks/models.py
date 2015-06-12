@@ -5,10 +5,10 @@ from datetime import datetime
 from time import gmtime, strftime
 
 def image_name(instance, filename):
-    return "artworks/images/%s_%s" % (strftime('%d-%m-%Y', gmtime()), filename)
+    return 'artworks/images/%s_%s' % (strftime('%d-%m-%Y', gmtime()), filename)
 
 def avatar_name(instance, filename):
-    return "artists/images/%s_%s" % (strftime('%d-%m-%Y', gmtime()), filename)
+    return 'artists/images/%s_%s' % (strftime('%d-%m-%Y', gmtime()), filename)
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -18,7 +18,7 @@ class Category(models.Model):
         return self.name
 
     class Meta:
-        verbose_name_plural = "Categories"
+        verbose_name_plural = 'Categories'
 
 class Artwork(models.Model):
     title = models.CharField(max_length=100)
@@ -35,7 +35,7 @@ class Artwork(models.Model):
     image_4 = models.ImageField(upload_to=image_name, null=True, blank=True)
    
     def __unicode__(self):
-        return "%i %s" % (self.pk, self.title)
+        return '%i %s' % (self.pk, self.title)
 
     def get_absolute_url(self):
         return reverse('artwork_list', args=(self.pk,))
@@ -58,7 +58,7 @@ class Artist(models.Model):
 
     def __unicode__(self):
         if (self.first_name and self.last_name):
-            return "%s %s" % (self.first_name, self.last_name)
+            return '%s %s' % (self.first_name, self.last_name)
         else:
             return self.user.username
 
