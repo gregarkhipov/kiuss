@@ -7,3 +7,4 @@ env/*
 media/*
 local_files/*
 static/fonts/*
+/*/migrations/*
