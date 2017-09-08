@@ -3,8 +3,10 @@ local_settings.py
 *.log
 *.db
 *.sqlite3
-env/*
-media/*
-local_files/*
-static/fonts/*
-/*/migrations/*
+env
+venv
+virtualenv
+media
+local_files
+static/fonts
+/*/migrations
